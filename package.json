@@ -1,0 +1,16 @@
+{
+  "name": "broccoli-stencil",
+  "version": "0.0.1",
+  "author": "Szymon Witamborski <szywon@szywon.pl>",
+  "dependencies": {
+    "grunt-stencil": "1",
+    "underscore": "1",
+    "promise-map-series": "0.2"
+  },
+  "devDependencies": {
+    "broccoli-cli": "*",
+    "broccoli": "0.4",
+    "walk-sync": "0.1",
+    "mkdirp": "0.3"
+  }
+}
