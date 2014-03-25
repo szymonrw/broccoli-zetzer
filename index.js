@@ -65,7 +65,9 @@ function stencil (trees, options) {
         }
       });
 
-      pages.paths.forEach(function (path) {
+      pages.paths.filter(function (path) {
+        return /[^\/]$/.test(path);
+      }).forEach(function (path) {
         var result = process_file(path).toString();
         path = path.replace(/(\.[^.]+)+$/, ".html");
         save_file(join_paths(tmp.path, path), result);
