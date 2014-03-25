@@ -7,6 +7,7 @@ var join_paths = require("path").join;
 
 var _ = require("underscore");
 var mkdirp = require("mkdirp");
+var quick_temp = require("quick-temp");
 var map_series = require("promise-map-series");
 var walk_sync = require("walk-sync");
 
@@ -28,7 +29,9 @@ function stencil (trees, options) {
 
   options = options     || {};
   var env = options.env || {};
-  var out = options.out || ".";
+
+  var tmp = {};
+  quick_temp.makeOrReuse(tmp, "path");
 
   var parse = parse_setup(META_DATA_SEPARATOR);
 
@@ -64,22 +67,19 @@ function stencil (trees, options) {
 
       pages.paths.forEach(function (path) {
         var result = process_file(path).toString();
-        save_file(join_paths(out, path), result);
+        path = path.replace(/(\.[^.]+)+$/, ".html");
+        save_file(join_paths(tmp.path, path), result);
       });
 
-      return out;
+      return tmp.path;
 
       function find_closest_match (tree, name) {
         // Workaround because stencil passes "." for pages here...
         tree = tree === "." ? pages : tree;
 
-        console.log(name, tree.paths);
-
         var path = tree.paths.filter(function (path) {
           return path.indexOf(name) === 0;
         })[0];
-
-        console.log(typeof path);
 
         return join_paths(tree.root, path);
       }
@@ -87,6 +87,7 @@ function stencil (trees, options) {
   }
 
   function cleanup () {
+    quick_temp.remove(tmp, "path");
   }
 }
 

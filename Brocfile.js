@@ -11,8 +11,6 @@ module.exports = function (broccoli) {
     pages: pages,
     partials: partials,
     templates: templates
-  }, {
-    out: "asdf"
   });
 
   return site;
