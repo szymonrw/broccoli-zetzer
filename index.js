@@ -96,6 +96,6 @@ function read_file (path) {
 }
 
 function save_file (path, contents) {
-  mkdirp(dirname(path));
+  mkdirp.sync(dirname(path));
   return fs.writeFileSync(path, contents, "utf8");
 }
