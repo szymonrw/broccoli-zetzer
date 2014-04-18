@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "broccoli-cli": "*",
-    "broccoli": "0.7",
+    "broccoli": "0.9",
     "walk-sync": "0.1",
     "mkdirp": "0.3",
     "quick-temp": "0.1"
