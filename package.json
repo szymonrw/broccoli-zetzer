@@ -1,8 +1,9 @@
 {
   "name": "broccoli-stencil",
   "description": "HTML templating with includes for broccoli",
-  "version": "0.3.1",
-  "author": "Szymon Witamborski <szywon@szywon.pl>",
+  "version": "0.3.2",
+  "author": "Szymon Witamborski <simon@brainshave.com>",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/szywon/broccoli-stencil.git"
