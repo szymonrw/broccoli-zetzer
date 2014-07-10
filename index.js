@@ -49,7 +49,8 @@ function stencil (trees, options) {
     init: init,
     extensions: ["html", "md"],
     target: "html",
-    read: false
+    read: false,
+    name: "Stencil"
   });
 
   function init (roots) {
