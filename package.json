@@ -1,7 +1,7 @@
 {
   "name": "broccoli-zetzer",
   "description": "Broccoli plugin for Zetzer",
-  "version": "2.0.0-alpha1",
+  "version": "2.0.0-alpha2",
   "homepage": "https://github.com/brainshave/zetzer",
   "author": "Szymon Witamborski <simon@brainshave.com>",
   "license": "MIT",

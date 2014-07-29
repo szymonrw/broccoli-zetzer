@@ -2,7 +2,20 @@
 
 [Zetzer][zetzer] plugin for [Broccoli][broccoli].
 
-For documentation see [Zetzer's repo][zetzer].
+For documentation and configuration options see [Zetzer's
+repo][zetzer].
+
+Example Brocfile:
+
+    var zetzer = require("broccoli-zetzer")
+
+    var htmls = zetzer({
+      pages:     "pages",
+      partials:  "partials",
+      templates: "templates"
+    })
+
+    module.exports = htmls
 
 ## Copying
 
