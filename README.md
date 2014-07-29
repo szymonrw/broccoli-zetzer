@@ -1,24 +1,12 @@
-# Stencil for Broccoli
+# Zetzer for Broccoli
 
-[Stencil] tailored to [Broccoli].
+[Zetzer][zetzer] plugin for [Broccoli][broccoli].
 
-For more specific documentation see [grunt-stencil's repo] [stencil].
-
-## Options
-
-Trees:
-
-- `pages`: tree that include pages (main input)
-- `templates`
-- `partials`
-
-Extra options
-
-- `env`: extra stuff to be injected to doT's environment (`it`)
+For documentation see [Zetzer's repo][zetzer].
 
 ## Copying
 
 MIT, see [COPYING](COPYING).
 
-[stencil]: https://github.com/cambridge-healthcare/grunt-stencil
+[zetzer]: https://github.com/brainshave/zetzer
 [broccoli]: https://github.com/broccolijs/broccoli

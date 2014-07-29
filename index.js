@@ -13,18 +13,18 @@ var walk_sync = require("walk-sync");
 
 var filter = require("broccoli-dep-filter");
 
-var parse_setup = require("grunt-stencil/lib/parse");
-var compilers_setup = require("grunt-stencil/lib/compilers");
-var process_file_setup = require("grunt-stencil/lib/process_file");
+var parse_setup = require("zetzer/parse");
+var compilers_setup = require("zetzer/compilers");
+var process_file_setup = require("zetzer/process");
 
-var dot_compiler = require("grunt-stencil/lib/dot_compiler")({});
-var markdown_compiler = require("grunt-stencil/lib/markdown_compiler");
+var dot_compiler = require("zetzer/dot")({});
+var markdown_compiler = require("zetzer/markdown");
 
 var META_DATA_SEPARATOR = /\r?\n\r?\n/;
 
-module.exports = stencil;
+module.exports = zetzer;
 
-function stencil (trees, options) {
+function zetzer (trees, options) {
   var pages_tree = trees.pages;
   var partials_tree = trees.partials;
   var templates_tree = trees.templates;
@@ -50,7 +50,7 @@ function stencil (trees, options) {
     extensions: ["html", "md"],
     target: "html",
     read: false,
-    name: "Stencil"
+    name: "Zetzer"
   });
 
   function init (roots) {
@@ -75,7 +75,7 @@ function stencil (trees, options) {
     }
 
     function find_closest_match (tree, name) {
-      // Stencil for pages passes "." which should be changed
+      // Zetzer for pages passes "." which should be changed
       if (tree === ".") return name;
 
       var path = tree.paths.filter(function (path) {

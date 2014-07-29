@@ -1,19 +1,20 @@
 {
-  "name": "broccoli-stencil",
-  "description": "HTML templating with includes for broccoli",
-  "version": "0.3.2",
+  "name": "broccoli-zetzer",
+  "description": "Broccoli plugin for Zetzer",
+  "version": "2.0.0-alpha1",
+  "homepage": "https://github.com/brainshave/zetzer",
   "author": "Szymon Witamborski <simon@brainshave.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/szywon/broccoli-stencil.git"
+    "url": "https://github.com/szywon/broccoli-zetzer.git"
   },
   "bugs": {
-    "url": "https://github.com/szywon/broccoli-stencil/issues"
+    "url": "https://github.com/szywon/broccoli-zetzer/issues"
   },
   "dependencies": {
-    "grunt-stencil": "^1.1.0",
-    "underscore": "1",
+    "zetzer": "^2.0.0",
+    "underscore": "^1.6.0",
     "promise-map-series": "0.2",
     "broccoli-dep-filter": "^0.3.0"
   },
@@ -22,6 +23,18 @@
     "broccoli": "0.12",
     "walk-sync": "0.1",
     "mkdirp": "0.3",
-    "quick-temp": "0.1"
-  }
+    "quick-temp": "0.1",
+    "grunt-zetzer": "^2.0.0"
+  },
+  "keywords": [
+    "broccoli-plugin",
+    "templating",
+    "markdown",
+    "dot",
+    "HTML generation",
+    "generating HTML",
+    "templates",
+    "partials",
+    "includes"
+  ]
 }
