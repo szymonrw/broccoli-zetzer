@@ -1,7 +1,7 @@
 {
   "name": "broccoli-zetzer",
   "description": "Broccoli plugin for Zetzer",
-  "version": "2.0.0-alpha2",
+  "version": "2.0.0",
   "homepage": "https://github.com/brainshave/zetzer",
   "author": "Szymon Witamborski <simon@brainshave.com>",
   "license": "MIT",
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "broccoli-cli": "*",
-    "broccoli": "0.12",
+    "broccoli": "0.13",
     "walk-sync": "0.1",
     "mkdirp": "0.3",
     "quick-temp": "0.1",
