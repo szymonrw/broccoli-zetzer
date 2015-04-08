@@ -16,14 +16,14 @@
     "zetzer": "^2.0.0",
     "underscore": "^1.6.0",
     "promise-map-series": "0.2",
-    "broccoli-dep-filter": "^0.3.0"
+    "broccoli-dep-filter": "^0.3.0",
+    "walk-sync": "0.1",
+    "mkdirp": "0.3",
+    "quick-temp": "0.1"
   },
   "devDependencies": {
     "broccoli-cli": "*",
     "broccoli": "0.13",
-    "walk-sync": "0.1",
-    "mkdirp": "0.3",
-    "quick-temp": "0.1",
     "grunt-zetzer": "^2.0.0"
   },
   "keywords": [
