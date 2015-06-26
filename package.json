@@ -24,7 +24,9 @@
     "underscore": "^1.6.0",
     "promise-map-series": "0.2",
     "mkdirp": "0.3",
-    "broccoli-dep-filter": "^0.3.0"
+    "broccoli-dep-filter": "^0.3.0",
+    "quick-temp": "0.1",
+    "walk-sync": "0.1"
   },
   "devDependencies": {
     "broccoli": "0.13",
@@ -33,8 +35,6 @@
     "grunt-zetzer": "^2.0.0",
     "jshint": "^2.8.0",
     "mocha": "^2.2.5",
-    "quick-temp": "0.1",
-    "walk-sync": "0.1",
     "watchify": "^3.2.3"
   },
   "keywords": [
