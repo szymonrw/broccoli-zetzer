@@ -12,6 +12,13 @@
   "bugs": {
     "url": "https://github.com/szywon/broccoli-zetzer/issues"
   },
+  "scripts": {
+    "hint": "jshint index.js",
+    "dev": "npm run watch",
+    "test": "mocha tests/",
+    "watch": "watchify **/*.js -o 'npm run hint && npm run test'"
+  },
+  "main": "index.js",
   "dependencies": {
     "zetzer": "^2.0.0",
     "underscore": "^1.6.0",
@@ -19,12 +26,16 @@
     "broccoli-dep-filter": "^0.3.0"
   },
   "devDependencies": {
-    "broccoli-cli": "*",
     "broccoli": "0.13",
-    "walk-sync": "0.1",
+    "broccoli-cli": "*",
+    "expect.js": "^0.3.1",
+    "grunt-zetzer": "^2.0.0",
+    "jshint": "^2.8.0",
     "mkdirp": "0.3",
+    "mocha": "^2.2.5",
     "quick-temp": "0.1",
-    "grunt-zetzer": "^2.0.0"
+    "walk-sync": "0.1",
+    "watchify": "^3.2.3"
   },
   "keywords": [
     "broccoli-plugin",

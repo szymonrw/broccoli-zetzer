@@ -68,26 +68,45 @@ function zetzer (trees, options) {
       }
     });
 
-    return process;
-
     function process (path) {
       return process_file(path).toString();
     }
 
+    return process;
+
     function find_closest_match (tree, name) {
       // Zetzer for pages passes "." which should be changed
-      if (tree === ".") return name;
+      if (tree === ".") {
+        return name;
+      }
+
+      var root = tree.root;
 
       var path = tree.paths.filter(function (path) {
-        return path.indexOf(name) === 0;
+        var cur = join_paths(root, path);
+
+        // If not a folder
+        if (!fs.lstatSync(cur).isDirectory()) {
+          if (path.indexOf(name) === 0) {
+            // If character after name is not a dot or slash
+            var end = path.replace(name, '');
+            var firstChar = end.charAt(0);
+            return firstChar === '.';
+          }
+        }
+        return false;
       })[0];
+
+      if (path === undefined) {
+        throw new Error('Couldn\'t find a matching file for', name);
+      }
 
       return join_paths(tree.root, path);
     }
   }
 
   function cleanup () {
-    quick_temp.remove(tmp, "path");
+    //quick_temp.remove(tmp, "path");
   }
 }
 
