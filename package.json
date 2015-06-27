@@ -2,15 +2,18 @@
   "name": "broccoli-zetzer",
   "description": "Broccoli plugin for Zetzer",
   "version": "2.0.0",
-  "homepage": "https://github.com/brainshave/zetzer",
-  "author": "Szymon Witamborski <simon@brainshave.com>",
+  "homepage": "https://github.com/raiseandfall/broccoli-zetzer",
+  "author": {
+    "name": "raiseandfall",
+    "url": "https://github.com/raiseandfall"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/szywon/broccoli-zetzer.git"
+    "url": "https://github.com/raiseandfall/broccoli-zetzer.git"
   },
   "bugs": {
-    "url": "https://github.com/szywon/broccoli-zetzer/issues"
+    "url": "https://github.com/raiseandfall/broccoli-zetzer/issues"
   },
   "scripts": {
     "hint": "jshint index.js",

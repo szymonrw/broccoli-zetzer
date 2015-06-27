@@ -81,12 +81,17 @@ function zetzer (trees, options) {
       }
 
       var root = tree.root;
-
+      
       var path = tree.paths.filter(function (path) {
         var cur = join_paths(root, path);
 
         // If not a folder
         if (!fs.lstatSync(cur).isDirectory()) {
+          // If exact correct path
+          if (path === name) {
+            return true;
+          }
+
           if (path.indexOf(name) === 0) {
             // If character after name is not a dot or slash
             var end = path.replace(name, '');
@@ -96,9 +101,9 @@ function zetzer (trees, options) {
         }
         return false;
       })[0];
-
+      
       if (path === undefined) {
-        throw new Error('Couldn\'t find a matching file for', name);
+        throw new Error('Couldn\'t find a matching file for ' + name);
       }
 
       return join_paths(tree.root, path);
