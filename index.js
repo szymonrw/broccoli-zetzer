@@ -7,7 +7,6 @@ var join_paths = require("path").join;
 
 var _ = require("underscore");
 var mkdirp = require("mkdirp");
-var quick_temp = require("quick-temp");
 var map_series = require("promise-map-series");
 var walk_sync = require("walk-sync");
 
@@ -68,29 +67,41 @@ function zetzer (trees, options) {
       }
     });
 
-    return process;
+    return run;
 
-    function process (path) {
+    function run (path) {
       return process_file(path).toString();
     }
 
     function find_closest_match (tree, name) {
       // Zetzer for pages passes "." which should be changed
-      if (tree === ".") return name;
+      if (tree === ".") {
+        return name;
+      }
 
       var path = tree.paths.filter(function (path) {
-        return path.indexOf(name) === 0;
+        return !is_directory(path) && file_matches(name, path);
       })[0];
+
+      if (path === undefined) {
+        throw new Error('Couldn\'t find a matching file for ' + name);
+      }
 
       return join_paths(tree.root, path);
     }
-  }
-
-  function cleanup () {
-    quick_temp.remove(tmp, "path");
   }
 }
 
 function read_file (path) {
   return fs.readFileSync(path, "utf8");
+}
+
+function is_directory (path) {
+  // path ends with slash
+  return /\/$/.test(path);
+}
+
+function file_matches (name, path) {
+  // has at least one-char extension
+  return new RegExp("^" + name + "\\..").test(path);
 }
