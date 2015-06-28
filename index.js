@@ -13,14 +13,14 @@ var walk_sync = require("walk-sync");
 
 var filter = require("broccoli-dep-filter");
 
+var default_settings = require("zetzer/defaults");
+
 var parse_setup = require("zetzer/parse");
 var compilers_setup = require("zetzer/compilers");
 var process_file_setup = require("zetzer/process");
 
-var dot_compiler = require("zetzer/dot")({});
-var markdown_compiler = require("zetzer/markdown");
-
-var META_DATA_SEPARATOR = /\r?\n\r?\n/;
+var dot_setup = require("zetzer/dot");
+var markdown_setup = require("zetzer/markdown");
 
 module.exports = zetzer;
 
@@ -31,12 +31,15 @@ function zetzer (trees, options) {
 
   options = options     || {};
   var env = options.env || {};
+  var parse = parse_setup(options.meta_data_separator ||
+                          defaults.meta_data_separator);
 
-  var parse = parse_setup(META_DATA_SEPARATOR);
+  var dot = dot_setup({ settings: options.dot_settings });
+  var markdown = markdown_setup({ settings: options.markdown_settings });
 
   var compile = compilers_setup({
     read_content: _.compose(parse.content, read_file),
-    compilers:    [dot_compiler, markdown_compiler]
+    compilers:    [ dot, markdown ]
   });
 
   return filter({
@@ -54,8 +57,15 @@ function zetzer (trees, options) {
   });
 
   function init (roots) {
-    var partials  = { root: roots.partials, paths: walk_sync(roots.partials) };
-    var templates = { root: roots.templates, paths: walk_sync(roots.templates) };
+    var partials  = {
+      root: roots.partials,
+      paths: walk_sync(roots.partials)
+    };
+
+    var templates = {
+      root: roots.templates,
+      paths: walk_sync(roots.templates)
+    };
 
     var process_file = process_file_setup({
       compile:            compile,
