@@ -2,9 +2,6 @@
 
 var fs = require("fs");
 
-var dirname = require("path").dirname;
-var join_paths = require("path").join;
-
 var _ = require("underscore");
 var mkdirp = require("mkdirp");
 var map_series = require("promise-map-series");
@@ -18,6 +15,8 @@ var process_file_setup = require("zetzer/process");
 
 var dot_compiler = require("zetzer/dot")({});
 var markdown_compiler = require("zetzer/markdown");
+
+var find_closest_match = require("./find_closest_match");
 
 var META_DATA_SEPARATOR = /\r?\n\r?\n/;
 
@@ -72,36 +71,9 @@ function zetzer (trees, options) {
     function run (path) {
       return process_file(path).toString();
     }
-
-    function find_closest_match (tree, name) {
-      // Zetzer for pages passes "." which should be changed
-      if (tree === ".") {
-        return name;
-      }
-
-      var path = tree.paths.filter(function (path) {
-        return !is_directory(path) && file_matches(name, path);
-      })[0];
-
-      if (path === undefined) {
-        throw new Error('Couldn\'t find a matching file for ' + name);
-      }
-
-      return join_paths(tree.root, path);
-    }
   }
 }
 
 function read_file (path) {
   return fs.readFileSync(path, "utf8");
-}
-
-function is_directory (path) {
-  // path ends with slash
-  return /\/$/.test(path);
-}
-
-function file_matches (name, path) {
-  // has at least one-char extension
-  return name === path || new RegExp("^" + name + "\\..").test(path);
 }
