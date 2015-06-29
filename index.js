@@ -103,5 +103,5 @@ function is_directory (path) {
 
 function file_matches (name, path) {
   // has at least one-char extension
-  return new RegExp("^" + name + "\\..").test(path);
+  return name === path || new RegExp("^" + name + "\\..").test(path);
 }
