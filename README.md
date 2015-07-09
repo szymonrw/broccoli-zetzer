@@ -12,7 +12,8 @@ Example Brocfile:
     var htmls = zetzer({
       pages:     "pages",
       partials:  "partials",
-      templates: "templates"
+      templates: "templates",
+      ... // other options
     })
 
     module.exports = htmls

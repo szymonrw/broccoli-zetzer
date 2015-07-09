@@ -2,7 +2,7 @@
 
 var fs = require("fs");
 
-var _ = require("underscore");
+var _ = require("lodash");
 var mkdirp = require("mkdirp");
 var map_series = require("promise-map-series");
 var walk_sync = require("walk-sync");
@@ -13,7 +13,7 @@ var parse_setup = require("zetzer/parse");
 var compilers_setup = require("zetzer/compilers");
 var process_file_setup = require("zetzer/process");
 
-var dot_compiler = require("zetzer/dot")({});
+var dot_compiler_setup = require("zetzer/dot");
 var markdown_compiler = require("zetzer/markdown");
 
 var find_closest_match = require("./find_closest_match");
@@ -22,15 +22,21 @@ var META_DATA_SEPARATOR = /\r?\n\r?\n/;
 
 module.exports = zetzer;
 
-function zetzer (trees, options) {
-  var pages_tree = trees.pages;
-  var partials_tree = trees.partials;
-  var templates_tree = trees.templates;
+function zetzer (options, options_compat) {
+  // options_compat is only for backwards compatibility because
+  // previously options were passed separately from trees
+  options = _.merge({}, options, options_compat);
 
-  options = options     || {};
+  var pages_tree = options.pages;
+  var partials_tree = options.partials;
+  var templates_tree = options.templates;
+
   var env = options.env || {};
 
-  var parse = parse_setup(META_DATA_SEPARATOR);
+  var parse = parse_setup(options.meta_data_separator || META_DATA_SEPARATOR);
+  var dot_compiler = dot_compiler_setup({
+    template_settings: options.dot_template_settings || {}
+  });
 
   var compile = compilers_setup({
     read_content: _.compose(parse.content, read_file),
