@@ -3,7 +3,6 @@
 var fs = require("fs");
 
 var _ = require("lodash");
-var mkdirp = require("mkdirp");
 var map_series = require("promise-map-series");
 var walk_sync = require("walk-sync");
 
@@ -39,7 +38,7 @@ function zetzer (options, options_compat) {
   });
 
   var compile = compilers_setup({
-    read_content: _.compose(parse.content, read_file),
+    read_content: (path) => parse.content(read_file(path)),
     compilers:    [dot_compiler, markdown_compiler]
   });
 
@@ -63,7 +62,7 @@ function zetzer (options, options_compat) {
 
     var process_file = process_file_setup({
       compile:            compile,
-      read_header:        _.compose(parse.header, read_file),
+      read_header:        (path) => parse.header(read_file(path)),
       find_closest_match: find_closest_match,
       options: {
         env:       env,
