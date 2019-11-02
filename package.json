@@ -24,7 +24,7 @@
   "main": "index.js",
   "dependencies": {
     "broccoli-dep-filter": "^0.3.0",
-    "lodash": "^3.10.0",
+    "lodash": "^4.17.15",
     "mkdirp": "0.3",
     "promise-map-series": "0.2",
     "walk-sync": "0.1",
